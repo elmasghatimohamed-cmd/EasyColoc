@@ -29,6 +29,9 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'is_global_admin',
+        'is_banned',
+        'reputation',
     ];
 
     /**
@@ -63,5 +66,17 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    public function colocations()
+    {
+        return $this->belongsToMany(Colocation::class)
+            ->withPivot('role', 'joined_at', 'left_at')
+            ->withTimestamps();
+    }
+
+    public function hasActiveColocation()
+    {
+        return $this->colocations()->wherePivot('left_at', null)->exists();
     }
 }
