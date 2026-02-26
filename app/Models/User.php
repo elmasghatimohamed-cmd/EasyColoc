@@ -79,4 +79,19 @@ class User extends Authenticatable
     {
         return $this->colocations()->wherePivot('left_at', null)->exists();
     }
+
+    public function expenses()
+    {
+        return $this->hasMany(Expense::class);
+    }
+
+    public function settlementsSent()
+    {
+        return $this->hasMany(Settlement::class, 'from_user_id');
+    }
+
+    public function settlementsReceived()
+    {
+        return $this->hasMany(Settlement::class, 'to_user_id');
+    }
 }
