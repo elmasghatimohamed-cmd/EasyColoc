@@ -32,6 +32,7 @@ Route::middleware(['auth', 'not_banned'])->group(function () {
     Route::put('/colocation/{colocation}', [ColocationController::class, 'update'])->name('colocations.update');
     Route::delete('/colocation/{colocation}', [ColocationController::class, 'destroy'])->name('colocations.destroy');
     Route::post('/colocation/{colocation}/leave', [ColocationController::class, 'leave'])->name('colocations.leave');
+    Route::post('/colocation/{colocation}/members/{user}/remove', [ColocationController::class, 'removeMember'])->name('colocations.members.remove');
     Route::post('/colocation/{colocation}/cancel', [ColocationController::class, 'cancel'])->name('colocations.cancel');
 
     // Profile routes
@@ -42,7 +43,7 @@ Route::middleware(['auth', 'not_banned'])->group(function () {
 
     // invitation routes
     Route::get('/invitations', [InvitationController::class, 'index'])->name('invitations.index');
-    Route::post('/invitations', [InvitationController::class, 'search'])->name('invitations.search');
+    Route::post('/invitations/search', [InvitationController::class, 'search'])->name('invitations.search');
     Route::post('/invitations', [InvitationController::class, 'store'])->name('invitations.store');
     Route::get('/invitations/{token}', [InvitationController::class, 'show'])->name('invitations.show');
     Route::post('/invitations/{token}/accept', [InvitationController::class, 'accept'])->name('invitations.accept');
