@@ -49,7 +49,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach($active->expenses()->latest()->take(5)->get() as $expense)
+                                    @foreach($active->expenses()->with('payer')->latest()->take(5)->get() as $expense)
                                         <tr>
                                             <td>
                                                 <div>
@@ -89,7 +89,7 @@
 
         <!-- Members Card -->
         <div class="lg:col-span-1">
-            <div class="card dark-card">
+            <div class="card">
                 <div class="card-header">
                     <h3 class="card-title">
                         <i class="fas fa-users"></i>
@@ -102,15 +102,15 @@
                             @foreach($active->activeUsers()->get() as $member)
                                 <div class="flex items-center justify-between">
                                     <div class="flex items-center gap-3">
-                                        <div class="w-8 h-8 bg-white rounded-full flex items-center justify-center text-primary text-sm font-semibold">
+                                        <div class="w-8 h-8 bg-primary rounded-full flex items-center justify-center text-white text-sm font-semibold">
                                             {{ strtoupper(substr($member->name, 0, 1)) }}
                                         </div>
                                         <div>
                                             <div class="font-medium">{{ $member->name }}</div>
-                                            <div class="text-xs opacity-75">{{ $member->pivot->role }}</div>
+                                            <div class="text-xs text-muted">{{ $member->pivot->role }}</div>
                                         </div>
                                     </div>
-                                    <div class="text-xs opacity-75">
+                                    <div class="text-xs text-muted">
                                         Rép: {{ $member->reputation ?? 0 }}
                                     </div>
                                 </div>
@@ -118,7 +118,7 @@
                         </div>
                         
                         @if($active->owner()->first()->id === auth()->id())
-                            <div class="mt-4 pt-4 border-t border-gray-700">
+                            <div class="mt-4 pt-4" style="border-top: 1px solid rgba(15, 23, 42, 0.08);">
                                 <button class="btn btn-secondary btn-sm w-full">
                                     <i class="fas fa-user-plus"></i>
                                     Inviter un membre
@@ -139,19 +139,4 @@
         </div>
     </div>
 
-    <!-- Reputation Widget -->
-    <div class="mt-6">
-        <div class="card dark-card" style="max-width: 300px;">
-            <div class="card-body text-center">
-                <div class="text-sm opacity-75 mb-2">VOTRE RÉPUTATION</div>
-                <div class="text-2xl font-bold mb-2">
-                    {{ auth()->user()->reputation >= 0 ? '+' : '' }}{{ auth()->user()->reputation ?? 0 }} points
-                </div>
-                <div class="w-full bg-gray-700 rounded-full h-2">
-                    <div class="bg-gradient-to-r from-green-400 to-blue-500 h-2 rounded-full" 
-                         style="width: {{ min(100, max(0, (auth()->user()->reputation + 10) * 5)) }}%"></div>
-                </div>
-            </div>
-        </div>
-    </div>
 @endsection
