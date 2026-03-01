@@ -26,7 +26,7 @@ class ExpenseController extends Controller
         $expenses = $query->orderBy('date', 'desc')->get();
         $balances = $coloc->calculateBalances();
         $settlements = $coloc->calculateSettlements();
-        
+
         return view('expenses.index', compact('expenses', 'coloc', 'balances', 'settlements'));
     }
 
@@ -44,18 +44,16 @@ class ExpenseController extends Controller
             'amount' => 'required|numeric|min:0.01',
             'date' => 'required|date',
             'category_id' => 'nullable|exists:categories,id',
-            'description' => 'nullable|string|max:1000',
         ]);
 
         $coloc = $this->currentColocation();
-        
+
         $expense = $coloc->expenses()->create([
             'payer_id' => auth()->id(),
             'category_id' => $request->category_id,
             'title' => $request->title,
             'amount' => $request->amount,
             'date' => $request->date,
-            'description' => $request->description,
         ]);
 
         // Ajouter tous les membres actifs à la dépense
@@ -83,13 +81,12 @@ class ExpenseController extends Controller
     public function update(Request $request, Expense $expense)
     {
         $this->authorize('update', $expense);
-        
+
         $request->validate([
             'title' => 'required|string|max:255',
             'amount' => 'required|numeric|min:0.01',
             'date' => 'required|date',
             'category_id' => 'nullable|exists:categories,id',
-            'description' => 'nullable|string|max:1000',
         ]);
 
         $expense->update([
@@ -97,7 +94,6 @@ class ExpenseController extends Controller
             'amount' => $request->amount,
             'date' => $request->date,
             'category_id' => $request->category_id,
-            'description' => $request->description,
         ]);
 
         return redirect()->route('expenses.index')->with('success', 'Dépense mise à jour');
