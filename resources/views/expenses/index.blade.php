@@ -2,13 +2,9 @@
 
 @section('header')
     <div class="flex items-center justify-between">
-        <h2 class="font-bold text-2xl text-white">
+        <h2 class="font-bold text-2xl text-gray-900">
             <i class="fas fa-receipt mr-3"></i>Dépenses
         </h2>
-        <div class="flex items-center space-x-2 text-white/80">
-            <i class="fas fa-coins"></i>
-            <span class="text-sm">Total: €{{ number_format($expenses->sum('amount'), 2) }}</span>
-        </div>
     </div>
 @endsection
 
