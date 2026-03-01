@@ -209,7 +209,7 @@
 
     <!-- Reputation Overview -->
     <div class="mt-6">
-        <div class="card dark-card">
+        <div class="card">
             <div class="card-header">
                 <h3 class="card-title">
                     <i class="fas fa-star"></i>
@@ -222,19 +222,19 @@
                         <div class="text-3xl font-bold mb-2">
                             {{ number_format($stats['avg_reputation'], 1) }}
                         </div>
-                        <div class="text-sm opacity-75">Réputation Moyenne</div>
+                        <div class="text-sm text-muted">Réputation Moyenne</div>
                     </div>
                     <div>
-                        <div class="text-3xl font-bold mb-2 text-green-400">
+                        <div class="text-3xl font-bold mb-2" style="color: var(--success-color);">
                             {{ $stats['active_users_count'] }}
                         </div>
-                        <div class="text-sm opacity-75">Utilisateurs Actifs</div>
+                        <div class="text-sm text-muted">Utilisateurs Actifs</div>
                     </div>
                     <div>
-                        <div class="text-3xl font-bold mb-2 text-yellow-400">
+                        <div class="text-3xl font-bold mb-2" style="color: var(--warning-color);">
                             {{ $stats['expenses_count'] }}
                         </div>
-                        <div class="text-sm opacity-75">Dépenses Totales</div>
+                        <div class="text-sm text-muted">Dépenses Totales</div>
                     </div>
                 </div>
             </div>
