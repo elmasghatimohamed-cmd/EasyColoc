@@ -177,7 +177,7 @@
 
         <!-- Account Settings -->
         <div class="mt-6">
-            <div class="card dark-card">
+            <div class="card">
                 <div class="card-header">
                     <h3 class="card-title">
                         <i class="fas fa-cog"></i>
@@ -186,48 +186,48 @@
                 </div>
                 <div class="card-body">
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <a href="{{ route('profile.edit') }}" class="flex items-center justify-between p-4 bg-gray-800 rounded-lg hover:bg-gray-700 transition-colors">
+                        <a href="{{ route('profile.edit') }}" class="flex items-center justify-between p-4 rounded-lg transition-colors" style="background: rgba(15, 23, 42, 0.04);">
                             <div class="flex items-center gap-3">
-                                <i class="fas fa-user text-blue-400"></i>
+                                <i class="fas fa-user text-primary"></i>
                                 <div>
                                     <div class="font-medium">Informations personnelles</div>
-                                    <div class="text-xs opacity-75">Nom, email, photo</div>
+                                    <div class="text-xs text-muted">Nom, email, photo</div>
                                 </div>
                             </div>
-                            <i class="fas fa-chevron-right text-gray-400"></i>
+                            <i class="fas fa-chevron-right" style="color: rgba(15, 23, 42, 0.35);"></i>
                         </a>
                         
-                        <a href="{{ route('profile.edit') }}#password" class="flex items-center justify-between p-4 bg-gray-800 rounded-lg hover:bg-gray-700 transition-colors">
+                        <a href="{{ route('profile.edit') }}#password" class="flex items-center justify-between p-4 rounded-lg transition-colors" style="background: rgba(15, 23, 42, 0.04);">
                             <div class="flex items-center gap-3">
-                                <i class="fas fa-lock text-green-400"></i>
+                                <i class="fas fa-lock" style="color: var(--success-color);"></i>
                                 <div>
                                     <div class="font-medium">Mot de passe</div>
-                                    <div class="text-xs opacity-75">Sécurité du compte</div>
+                                    <div class="text-xs text-muted">Sécurité du compte</div>
                                 </div>
                             </div>
-                            <i class="fas fa-chevron-right text-gray-400"></i>
+                            <i class="fas fa-chevron-right" style="color: rgba(15, 23, 42, 0.35);"></i>
                         </a>
                         
-                        <a href="#" class="flex items-center justify-between p-4 bg-gray-800 rounded-lg hover:bg-gray-700 transition-colors">
+                        <a href="#" class="flex items-center justify-between p-4 rounded-lg transition-colors" style="background: rgba(15, 23, 42, 0.04);">
                             <div class="flex items-center gap-3">
-                                <i class="fas fa-bell text-yellow-400"></i>
+                                <i class="fas fa-bell" style="color: var(--warning-color);"></i>
                                 <div>
                                     <div class="font-medium">Notifications</div>
-                                    <div class="text-xs opacity-75">Préférences d'alerte</div>
+                                    <div class="text-xs text-muted">Préférences d'alerte</div>
                                 </div>
                             </div>
-                            <i class="fas fa-chevron-right text-gray-400"></i>
+                            <i class="fas fa-chevron-right" style="color: rgba(15, 23, 42, 0.35);"></i>
                         </a>
                         
-                        <button onclick="confirmDeleteAccount()" class="flex items-center justify-between p-4 bg-gray-800 rounded-lg hover:bg-red-900 transition-colors w-full text-left">
+                        <button onclick="confirmDeleteAccount()" class="flex items-center justify-between p-4 rounded-lg transition-colors w-full text-left" style="background: rgba(241, 65, 108, 0.06);">
                             <div class="flex items-center gap-3">
-                                <i class="fas fa-trash text-red-400"></i>
+                                <i class="fas fa-trash" style="color: var(--danger-color);"></i>
                                 <div>
                                     <div class="font-medium">Supprimer le compte</div>
-                                    <div class="text-xs opacity-75">Action irréversible</div>
+                                    <div class="text-xs text-muted">Action irréversible</div>
                                 </div>
                             </div>
-                            <i class="fas fa-chevron-right text-gray-400"></i>
+                            <i class="fas fa-chevron-right" style="color: rgba(15, 23, 42, 0.35);"></i>
                         </button>
                     </div>
                 </div>
