@@ -82,7 +82,7 @@ class User extends Authenticatable
 
     public function expenses()
     {
-        return $this->hasMany(Expense::class);
+        return $this->hasMany(Expense::class, 'payer_id');
     }
 
     public function settlementsSent()
