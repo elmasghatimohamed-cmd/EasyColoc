@@ -22,23 +22,39 @@
         
         <style>
             :root {
-                --primary-color: #6366f1;
-                --primary-dark: #4f46e5;
-                --primary-light: #818cf8;
-                --secondary-color: #8b5cf6;
-                --success-color: #10b981;
-                --warning-color: #f59e0b;
-                --danger-color: #ef4444;
-                --gray-50: #f9fafb;
-                --gray-100: #f3f4f6;
-                --gray-200: #e5e7eb;
-                --gray-300: #d1d5db;
-                --gray-400: #9ca3af;
-                --gray-500: #6b7280;
-                --gray-600: #4b5563;
-                --gray-700: #374151;
-                --gray-800: #1f2937;
-                --gray-900: #111827;
+                --primary-color: #3E97FF;
+                --primary-dark: #2884EF;
+                --primary-light: #6FB1FF;
+                --secondary-color: #7239EA;
+                --success-color: #50CD89;
+                --warning-color: #FFC700;
+                --danger-color: #F1416C;
+                --gray-50: #f5f8fa;
+                --gray-100: #eff2f5;
+                --gray-200: #e4e6ef;
+                --gray-300: #d8dbe6;
+                --gray-400: #b5b5c3;
+                --gray-500: #a1a5b7;
+                --gray-600: #7e8299;
+                --gray-700: #5e6278;
+                --gray-800: #3f4254;
+                --gray-900: #181c32;
+
+                --sidebar-bg: #ffffff;
+                --sidebar-bg-2: #ffffff;
+                --sidebar-border: rgba(15, 23, 42, 0.06);
+                --sidebar-text: #64748b;
+                --sidebar-text-active: #0f172a;
+                --sidebar-hover: rgba(15, 23, 42, 0.04);
+                --sidebar-active: rgba(62, 151, 255, 0.10);
+                --topbar-bg: #ffffff;
+                --content-bg: #f1f5f9;
+                --sidebar-card-bg: #ffffff;
+                --sidebar-card-border: rgba(15, 23, 42, 0.08);
+                --radius-lg: 14px;
+                --radius-md: 12px;
+                --ring: 0 0 0 3px rgba(62, 151, 255, 0.16);
+                --shadow-soft: 0 10px 30px rgba(15, 23, 42, 0.06);
                 --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
                 --shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
                 --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
@@ -52,7 +68,7 @@
 
             body {
                 font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-                background: var(--gray-50);
+                background: var(--content-bg);
                 color: var(--gray-900);
                 line-height: 1.6;
                 font-size: 14px;
@@ -60,19 +76,27 @@
                 -moz-osx-font-smoothing: grayscale;
             }
 
+            .page-shell {
+                padding: 1.25rem;
+            }
+
+            .bg-primary { background: var(--primary-color); }
+            .text-primary { color: var(--primary-color); }
+            .flex-1 { flex: 1; }
+
             /* Layout Container */
             .app-container {
                 display: flex;
                 min-height: 100vh;
-                background: var(--gray-50);
+                background: var(--content-bg);
             }
 
             /* Sidebar Navigation */
             .sidebar {
                 width: 260px;
-                background: white;
-                border-right: 1px solid var(--gray-200);
-                box-shadow: var(--shadow-sm);
+                background: linear-gradient(180deg, var(--sidebar-bg) 0%, var(--sidebar-bg-2) 100%);
+                border-right: 1px solid var(--sidebar-border);
+                box-shadow: 0 6px 22px rgba(15, 23, 42, 0.04);
                 display: flex;
                 flex-direction: column;
                 position: sticky;
@@ -87,31 +111,87 @@
             }
 
             .sidebar::-webkit-scrollbar-track {
-                background: var(--gray-100);
+                background: rgba(15, 23, 42, 0.04);
             }
 
             .sidebar::-webkit-scrollbar-thumb {
-                background: var(--gray-300);
+                background: rgba(15, 23, 42, 0.12);
                 border-radius: 3px;
             }
 
             .sidebar::-webkit-scrollbar-thumb:hover {
-                background: var(--gray-400);
+                background: rgba(15, 23, 42, 0.18);
             }
 
             .sidebar-header {
                 padding: 1.5rem;
-                border-bottom: 1px solid var(--gray-200);
-                background: white;
+                border-bottom: 1px solid var(--sidebar-border);
+                background: transparent;
             }
 
             .sidebar-logo {
                 font-size: 1.5rem;
                 font-weight: 700;
-                color: var(--primary-color);
+                color: var(--gray-900);
                 display: flex;
                 align-items: center;
                 gap: 0.75rem;
+            }
+
+            .sidebar-user {
+                padding: 1rem 1.5rem;
+                border-bottom: 1px solid var(--sidebar-border);
+            }
+
+            .sidebar-user-card {
+                display: flex;
+                align-items: center;
+                gap: 0.75rem;
+                padding: 0.75rem;
+                border-radius: var(--radius-md);
+                background: var(--sidebar-card-bg);
+                border: 1px solid var(--sidebar-card-border);
+                box-shadow: 0 8px 24px rgba(15, 23, 42, 0.04);
+            }
+
+            .sidebar-user-avatar {
+                width: 40px;
+                height: 40px;
+                border-radius: 12px;
+                background: rgba(62, 151, 255, 0.12);
+                color: var(--primary-color);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-weight: 700;
+                font-size: 0.875rem;
+                flex: 0 0 auto;
+            }
+
+            .sidebar-user-name {
+                color: var(--gray-900);
+                font-weight: 600;
+                font-size: 0.875rem;
+                line-height: 1.2;
+            }
+
+            .sidebar-user-subtitle {
+                color: var(--sidebar-text);
+                font-size: 0.75rem;
+                margin-top: 0.1rem;
+            }
+
+            .sidebar-section-label {
+                padding: 0.75rem 1.5rem 0.25rem;
+                font-size: 0.6875rem;
+                text-transform: uppercase;
+                letter-spacing: 0.08em;
+                color: rgba(15, 23, 42, 0.45);
+                font-weight: 700;
+            }
+
+            .sidebar-logo i {
+                color: var(--primary-color);
             }
 
             .sidebar-nav {
@@ -123,25 +203,35 @@
 
             .nav-item {
                 display: block;
-                padding: 0.75rem 1.5rem;
-                color: var(--gray-600);
+                padding: 0.7rem 1.25rem;
+                color: var(--sidebar-text);
                 text-decoration: none;
                 font-weight: 500;
                 transition: all 0.2s ease;
                 border-left: 3px solid transparent;
                 position: relative;
+                margin: 0.15rem 0.75rem;
+                border-radius: 12px;
+            }
+
+            .nav-item .nav-icon {
+                width: 20px;
+                margin-right: 0.75rem;
+                text-align: center;
+                opacity: 0.9;
+                display: inline-block;
             }
 
             .nav-item:hover {
-                background: var(--gray-50);
-                color: var(--primary-color);
-                border-left-color: var(--primary-color);
+                background: var(--sidebar-hover);
+                color: var(--sidebar-text-active);
+                border-left-color: transparent;
             }
 
             .nav-item.active {
-                background: linear-gradient(90deg, rgba(99, 102, 241, 0.1) 0%, transparent 100%);
-                color: var(--primary-color);
-                border-left-color: var(--primary-color);
+                background: var(--sidebar-active);
+                color: var(--sidebar-text-active);
+                border-left-color: transparent;
                 font-weight: 600;
             }
 
@@ -149,6 +239,7 @@
                 width: 20px;
                 margin-right: 0.75rem;
                 text-align: center;
+                opacity: 0.9;
             }
 
             /* Main Content Area */
@@ -156,18 +247,66 @@
                 flex: 1;
                 display: flex;
                 flex-direction: column;
-                background: var(--gray-50);
+                background: var(--content-bg);
                 min-height: 100vh;
             }
 
             .top-bar {
-                background: white;
+                background: var(--topbar-bg);
                 border-bottom: 1px solid var(--gray-200);
                 padding: 1rem 2rem;
-                box-shadow: var(--shadow-sm);
+                box-shadow: 0 6px 18px rgba(15, 23, 42, 0.04);
                 display: flex;
                 align-items: center;
                 justify-content: space-between;
+                gap: 1.5rem;
+            }
+
+            .topbar-left {
+                display: flex;
+                align-items: center;
+                gap: 1.5rem;
+                min-width: 0;
+            }
+
+            .topbar-search {
+                display: flex;
+                align-items: center;
+                gap: 0.5rem;
+                background: #ffffff;
+                border: 1px solid rgba(15, 23, 42, 0.08);
+                border-radius: 12px;
+                padding: 0.5rem 0.75rem;
+                min-width: 280px;
+                max-width: 520px;
+                width: 40vw;
+                box-shadow: 0 10px 30px rgba(15, 23, 42, 0.04);
+            }
+
+            .topbar-search i {
+                color: var(--gray-600);
+                font-size: 0.875rem;
+            }
+
+            .topbar-search input {
+                border: none;
+                outline: none;
+                background: transparent;
+                font-size: 0.875rem;
+                width: 100%;
+                color: var(--gray-900);
+            }
+
+            .topbar-search:focus-within {
+                border-color: rgba(62, 151, 255, 0.45);
+                box-shadow: var(--ring);
+            }
+
+            .topbar-right {
+                display: flex;
+                align-items: center;
+                gap: 0.75rem;
+                flex: 0 0 auto;
             }
 
             .page-title {
@@ -205,9 +344,9 @@
             /* Professional Cards */
             .card {
                 background: white;
-                border-radius: 12px;
-                box-shadow: var(--shadow);
-                border: 1px solid var(--gray-200);
+                border-radius: var(--radius-lg);
+                box-shadow: var(--shadow-soft);
+                border: 1px solid rgba(15, 23, 42, 0.06);
                 transition: all 0.2s ease;
                 overflow: hidden;
             }
@@ -219,7 +358,7 @@
 
             .card-header {
                 padding: 1.5rem;
-                border-bottom: 1px solid var(--gray-200);
+                border-bottom: 1px solid rgba(15, 23, 42, 0.06);
                 background: white;
             }
 
@@ -253,10 +392,10 @@
 
             .stat-card {
                 background: white;
-                border-radius: 12px;
+                border-radius: var(--radius-lg);
                 padding: 1.5rem;
-                box-shadow: var(--shadow);
-                border: 1px solid var(--gray-200);
+                box-shadow: var(--shadow-soft);
+                border: 1px solid rgba(15, 23, 42, 0.06);
                 transition: all 0.2s ease;
             }
 
@@ -268,7 +407,7 @@
             .stat-icon {
                 width: 48px;
                 height: 48px;
-                border-radius: 12px;
+                border-radius: 14px;
                 display: flex;
                 align-items: center;
                 justify-content: center;
@@ -316,14 +455,33 @@
                 white-space: nowrap;
             }
 
+            .btn-primary,
+            .btn-secondary,
+            .btn-success,
+            .btn-danger {
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+                padding: 0.75rem 1.5rem;
+                border-radius: 8px;
+                font-weight: 600;
+                font-size: 0.875rem;
+                text-decoration: none;
+                border: none;
+                cursor: pointer;
+                transition: all 0.2s ease;
+                gap: 0.5rem;
+                white-space: nowrap;
+            }
+
             .btn-primary {
-                background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+                background: var(--primary-color);
                 color: white;
                 box-shadow: var(--shadow-sm);
             }
 
             .btn-primary:hover {
-                background: linear-gradient(135deg, var(--primary-dark), var(--primary-color));
+                background: var(--primary-dark);
                 box-shadow: var(--shadow-md);
                 transform: translateY(-1px);
             }
@@ -384,7 +542,17 @@
                 width: 100%;
                 padding: 0.75rem 1rem;
                 border: 1px solid var(--gray-300);
-                border-radius: 8px;
+                border-radius: 12px;
+                font-size: 0.875rem;
+                transition: all 0.2s ease;
+                background: white;
+            }
+
+            .input-modern {
+                width: 100%;
+                padding: 0.75rem 1rem;
+                border: 1px solid var(--gray-300);
+                border-radius: 12px;
                 font-size: 0.875rem;
                 transition: all 0.2s ease;
                 background: white;
@@ -393,7 +561,13 @@
             .form-control:focus {
                 outline: none;
                 border-color: var(--primary-color);
-                box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+                box-shadow: var(--ring);
+            }
+
+            .input-modern:focus {
+                outline: none;
+                border-color: var(--primary-color);
+                box-shadow: var(--ring);
             }
 
             .form-control::placeholder {
@@ -429,9 +603,9 @@
 
             /* Dark Theme Cards */
             .dark-card {
-                background: linear-gradient(135deg, var(--gray-800), var(--gray-900));
+                background: linear-gradient(135deg, #2B2B40, #1E1E2D);
                 color: white;
-                border: 1px solid var(--gray-700);
+                border: 1px solid rgba(255, 255, 255, 0.08);
             }
 
             .dark-card .card-title {
@@ -449,7 +623,7 @@
 
             /* Utility Classes */
             .text-muted {
-                color: var(--gray-500);
+                color: var(--gray-600);
             }
 
             .text-center {
@@ -481,6 +655,11 @@
             .grid-cols-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
             .grid-cols-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
 
+            .table-responsive {
+                width: 100%;
+                overflow-x: auto;
+            }
+
             /* Responsive */
             @media (max-width: 768px) {
                 .sidebar {
@@ -508,6 +687,10 @@
                 .stats-grid {
                     grid-template-columns: 1fr;
                 }
+
+                .topbar-search {
+                    display: none;
+                }
             }
         </style>
     </head>
@@ -523,29 +706,42 @@
                         <span>EasyColoc</span>
                     </div>
                 </div>
+                <div class="sidebar-user">
+                    <div class="sidebar-user-card">
+                        <div class="sidebar-user-avatar">
+                            {{ strtoupper(substr(auth()->user()->name, 0, 2)) }}
+                        </div>
+                        <div>
+                            <div class="sidebar-user-name">{{ auth()->user()->name }}</div>
+                            <div class="sidebar-user-subtitle">Account</div>
+                        </div>
+                    </div>
+                </div>
                 <nav class="sidebar-nav">
+                    <div class="sidebar-section-label">Dashboards</div>
                     <a href="{{ route('dashboard') }}" class="nav-item {{ request()->routeIs('dashboard') ? 'active' : '' }}">
-                        <i class="fas fa-tachometer-alt"></i>
+                        <i class="fas fa-tachometer-alt nav-icon"></i>
                         Dashboard
                     </a>
                     @php
                         $activeColocation = auth()->user()->colocations()->wherePivot('left_at', null)->first();
                     @endphp
                     @if($activeColocation)
+                        <div class="sidebar-section-label">Pages</div>
                         <a href="{{ route('colocations.show', $activeColocation) }}" 
                            class="nav-item {{ request()->routeIs('colocations.*') ? 'active' : '' }}">
-                            <i class="fas fa-home"></i>
+                            <i class="fas fa-home nav-icon"></i>
                             Colocations
                         </a>
                     @endif
                     @if(auth()->user()->is_global_admin)
                         <a href="{{ route('admin.stats') }}" class="nav-item {{ request()->routeIs('admin.*') ? 'active' : '' }}">
-                            <i class="fas fa-shield-alt"></i>
+                            <i class="fas fa-shield-alt nav-icon"></i>
                             Admin
                         </a>
                     @endif
                     <a href="{{ route('profile.show') }}" class="nav-item {{ request()->routeIs('profile.*') ? 'active' : '' }}">
-                        <i class="fas fa-user"></i>
+                        <i class="fas fa-user nav-icon"></i>
                         Profile
                     </a>
                     
@@ -553,7 +749,7 @@
                     <div class="flex-1"></div>
                     
                     <!-- Logout Button -->
-                    <form method="POST" action="{{ route('logout') }}" class="mt-4 pt-4 border-t border-gray-200" onsubmit="return confirm('Êtes-vous sûr de vouloir vous déconnecter ?');">
+                    <form method="POST" action="{{ route('logout') }}" class="mt-4 pt-4 border-t" style="border-color: var(--sidebar-border)" onsubmit="return confirm('Êtes-vous sûr de vouloir vous déconnecter ?');">
                         @csrf
                         <button type="submit" class="nav-item w-full text-left hover:bg-red-50 hover:text-red-600 hover:border-red-600 group">
                             <i class="fas fa-sign-out-alt"></i>
@@ -567,16 +763,24 @@
             <main class="main-content">
                 <!-- Top Bar -->
                 <header class="top-bar">
-                    @if (isset($header))
-                        <h1 class="page-title">{{ $header }}</h1>
-                    @else
-                        <h1 class="page-title">Tableau de bord</h1>
-                    @endif
-                    
-                    <div class="user-menu">
-                        <span class="text-muted">{{ auth()->user()->name }}</span>
-                        <div class="user-avatar">
-                            {{ strtoupper(substr(auth()->user()->name, 0, 2)) }}
+                    <div class="topbar-left">
+                        @hasSection('header')
+                            @yield('header')
+                        @else
+                            @if (isset($header))
+                                <h1 class="page-title">{{ $header }}</h1>
+                            @else
+                                <h1 class="page-title">Tableau de bord</h1>
+                            @endif
+                        @endif
+                    </div>
+
+                    <div class="topbar-right">
+                        <div class="user-menu">
+                            <span class="text-muted">{{ auth()->user()->name }}</span>
+                            <div class="user-avatar">
+                                {{ strtoupper(substr(auth()->user()->name, 0, 2)) }}
+                            </div>
                         </div>
                     </div>
                 </header>
