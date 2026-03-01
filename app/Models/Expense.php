@@ -11,12 +11,12 @@ class Expense extends Model
 
     protected $fillable = [
         'colocation_id',
-        'payer_id',
+        'user_id',
         'category_id',
         'title',
         'amount',
         'date',
-        'description',
+        'notes',
     ];
 
     protected $casts = [
@@ -29,9 +29,9 @@ class Expense extends Model
         return $this->belongsTo(Colocation::class);
     }
 
-    public function payer()
+    public function payeur()
     {
-        return $this->belongsTo(User::class, 'payer_id');
+        return $this->belongsTo(User::class, 'user_id');
     }
 
     public function category()
@@ -42,19 +42,5 @@ class Expense extends Model
     public function settlements()
     {
         return $this->hasMany(Settlement::class);
-    }
-
-    // Ajout de la relation many-to-many avec les utilisateurs qui partagent la dépense
-    public function users()
-    {
-        return $this->belongsToMany(User::class, 'expense_user')
-            ->withTimestamps();
-    }
-
-    // Calcul du montant par personne
-    public function getAmountPerPersonAttribute()
-    {
-        $activeMembersCount = $this->colocation->users()->wherePivot('left_at', null)->count();
-        return $activeMembersCount > 0 ? $this->amount / $activeMembersCount : 0;
     }
 }
